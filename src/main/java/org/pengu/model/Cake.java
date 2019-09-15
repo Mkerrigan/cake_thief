@@ -18,7 +18,7 @@ public class Cake {
         return value;
     }
 
-    public int getValueOverWeight() {
+    public float getValueOverWeight() {
         return this.value / this.weight;
     }
 }
