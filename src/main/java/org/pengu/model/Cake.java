@@ -14,15 +14,11 @@ public class Cake {
         return weight;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
     public int getValue() {
         return value;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public int getValueOverWeight() {
+        return this.value / this.weight;
     }
 }

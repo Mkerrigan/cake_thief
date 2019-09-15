@@ -20,7 +20,7 @@ public class CakeServiceTest {
         int weight = 20;
         int maximumValue = 555;
 
-        Assert.assertEquals(cakeService.maxDuffelBagValue(generatedCakeList, weight), maximumValue);
+        Assert.assertEquals(maximumValue, cakeService.maxDuffelBagValue(generatedCakeList, weight));
     }
 
 }
