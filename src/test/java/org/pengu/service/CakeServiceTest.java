@@ -27,7 +27,7 @@ public class CakeServiceTest {
         CakeService cakeService = new CakeService();
 
         List<Cake> generatedCakeList = Arrays.asList(
-                new Cake(2, 15),
+                new Cake(2, 4),
                 new Cake(3, 30));
         int weight = 10;
         int maximumValue = 90;

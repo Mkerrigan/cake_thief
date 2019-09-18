@@ -34,7 +34,7 @@ import java.util.List;
                 int extraSpace = weight % cake.getWeight();
                 int value = weight / cake.getWeight() * cake.getValue();
                 sortedCakes.removeLast();
-                if(extraSpace != 0) {
+                if(extraSpace != 0 && !sortedCakes.isEmpty()){
                     int multipleCakesValue = new duffelBag(new LinkedList<>(sortedCakes),extraSpace + cake.getWeight()).maxValue();
                     if(multipleCakesValue >= cake.getValue()) return value - cake.getValue() + multipleCakesValue;
                 }
