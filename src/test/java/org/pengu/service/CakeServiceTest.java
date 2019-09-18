@@ -22,5 +22,17 @@ public class CakeServiceTest {
 
         Assert.assertEquals(cakeService.maxDuffelBagValue(generatedCakeList, weight), maximumValue);
     }
+    @Test
+    public void maxDuffelBagValueBackTrack() {
+        CakeService cakeService = new CakeService();
+
+        List<Cake> generatedCakeList = Arrays.asList(
+                new Cake(2, 15),
+                new Cake(3, 30));
+        int weight = 10;
+        int maximumValue = 90;
+
+        Assert.assertEquals(cakeService.maxDuffelBagValue(generatedCakeList, weight), maximumValue);
+    }
 
 }

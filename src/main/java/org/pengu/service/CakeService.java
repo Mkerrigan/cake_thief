@@ -7,14 +7,13 @@ import java.util.LinkedList;
 import java.util.List;
 
  class CakeService {
-    private LinkedList<Cake> sortedCakes;
-    int maxDuffelBagValue(List<Cake> cakeList, int weight) {
-
-        //sort cakes by order
+     int maxDuffelBagValue(List<Cake> cakeList, int weight) {
+         LinkedList<Cake> sortedCakes;
+         //sort cakes by order
         class sortByValue implements Comparator<Cake> {
             @Override
-            public int compare(Cake a,Cake b) {
-                return a.getValue()/a.getWeight()-b.getValue()/b.getWeight();
+            public int compare(Cake a, Cake b) {
+                return a.getValue() / a.getWeight() - b.getValue() / b.getWeight();
             }
         }
         sortedCakes = new LinkedList<>(cakeList);
@@ -23,12 +22,26 @@ import java.util.List;
         for(Cake cake : sortedCakes){
             System.out.println(cake);
         }*/
-        return findMaxDuffelBagValue(weight);
-    }
-    private int findMaxDuffelBagValue(int weight){
-        int extraSpace  = weight%sortedCakes.getLast().getWeight();
-        int value = weight/sortedCakes.getLast().getWeight() * sortedCakes.getLast().getValue();
-        sortedCakes.removeLast();
-        return extraSpace == 0? value:value + findMaxDuffelBagValue(extraSpace);
-    }
-}
+        class duffelBag {
+            private LinkedList<Cake> sortedCakes;
+            private int weight;
+            private duffelBag(LinkedList<Cake> sortedCakes,int weight){
+                this.sortedCakes = sortedCakes;
+                this.weight = weight;
+            }
+            private int maxValue() {
+                Cake cake = sortedCakes.getLast();
+                int extraSpace = weight % cake.getWeight();
+                int value = weight / cake.getWeight() * cake.getValue();
+                sortedCakes.removeLast();
+                if(extraSpace != 0) {
+                    int multipleCakesValue = new duffelBag(new LinkedList<>(sortedCakes),extraSpace + cake.getWeight()).maxValue();
+                    if(multipleCakesValue >= cake.getValue()) return value - cake.getValue() + multipleCakesValue;
+                }
+                return extraSpace == 0 || sortedCakes.isEmpty() ? value: value + new duffelBag(sortedCakes,extraSpace).maxValue();
+            }
+        }
+        return new duffelBag(sortedCakes,weight).maxValue();
+     }
+ }
+
